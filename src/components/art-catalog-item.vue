@@ -7,7 +7,7 @@
      <p class="art-catalog-item-price">{{product_data.price}} руб.</p>
      <button 
      class="art-catalog-item-btn" 
-     @click="sendDataToParent">В корзину</button>
+     @click="addToTrash">В корзину</button>
  </div>
 </template>
 
@@ -37,15 +37,18 @@ export default{
 
     },
     methods:{
-        sendDataToParent() {
-            this.$emit('sendArticle', this.product_data.article)
+        addToTrash(){
+            this.$emit('addToTrash',this.product_data)
+
+        }
+
 
         }
         
     }
 
 
-}
+
 
 
 </script>

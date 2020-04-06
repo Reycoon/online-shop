@@ -1,7 +1,10 @@
 <template>
  <div class="art-main-wrapper">
     <art-catalog/>
-    <art-trash v-if="TRASH.lenght"/>
+    <art-trash 
+    v-if="TRASH.length"
+    v-bind:trash_data="TRASH"
+    />
  </div>
 </template>
 
@@ -27,7 +30,7 @@ export default{
     },
     computed:{
         ...mapGetters([
-            'TRASH'
+            'TRASH',
 
         ])
 

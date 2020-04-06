@@ -15,6 +15,9 @@ let store = new Vuex.Store ({
     mutations:{
         SET_PRODUCTS:(state, products) => {
             state.products = products;
+        },
+        SET_TRASH:(state, product) => {
+            state.trash.push(product)
         }
     },
     actions:{
@@ -32,6 +35,9 @@ let store = new Vuex.Store ({
 
             })
 
+        },
+        ADD_TO_TRASH({commit}, product){
+            commit('SET_TRASH', product);
         }
     },
     getters:{

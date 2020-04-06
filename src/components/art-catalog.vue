@@ -6,7 +6,7 @@
           v-for="product in this.$store.state.products" 
           :key="product.article"
           v-bind:product_data="product"
-          @sendArticle="showChildArticle"
+          @addToTrash="addToTrash"
          
          />
 
@@ -41,12 +41,13 @@ export default{
     },
     methods:{
         ...mapActions([
-            'GET_PRODUCTS'
+            'GET_PRODUCTS',
+            'ADD_TO_TRASH'
 
         ]),
         
-        showChildArticle(data) {
-            console.log(data)
+        addToTrash(data) {
+            this.ADD_TO_TRASH(data)
 
         }
         

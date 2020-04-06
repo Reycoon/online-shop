@@ -1,9 +1,13 @@
 <template>
  <div class="art-trash">
      <h2>Корзина</h2>
-     <art-trash-item > 
+     <art-trash-item
+     v-for="item in trash_data"
+     :key="item.article"
+     v-bind:trash_item_data="item"
+     /> 
          
-     </art-trash-item>
+     
  </div>
 </template>
 
@@ -18,6 +22,13 @@ export default{
 
     },
     props:{
+        trash_data: {
+            type:Array,
+            default(){
+                return []
+            }
+
+        }
 
     },
     data() {
