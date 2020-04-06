@@ -8,10 +8,10 @@
          <p>{{trash_item_data.price}} руб.</p>
      </div>
      <div class="art-trash-item-sum">
-    
-
-     </div>
-     <button>Удалить</button>
+         
+         {{trash_item_data.qty}}
+         </div>
+     <button @click="deleteItemTrash">Удалить</button>
 
  </div>
 </template>
@@ -41,7 +41,15 @@ export default{
 
     },
     methods:{
+        deleteItemTrash(){
+            this.$emit('deleteItemTrash')
+        }
         
+    },
+
+    mounted() {
+        this.$set(this.trash_item_data, 'qty', 1)
+
     }
 
 
@@ -56,6 +64,10 @@ export default{
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
+    border: black solid;
+    padding: 16px;
+    margin-bottom: 16px;
+    border-width: 1px;
 }
 .art-trash-item-image{
     width: 100px;

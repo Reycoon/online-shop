@@ -1,27 +1,16 @@
 <template>
  <div class="art-main-wrapper">
-    <art-catalog/>
-    <art-trash 
-    v-if="TRASH.length"
-    v-bind:trash_data="TRASH"
-    />
+     <router-view></router-view>
  </div>
 </template>
 
 <script>
-import artCatalog from './art-catalog'
-import artTrash from './art-trash'
-import {mapGetters} from 'vuex'
+
 
 export default{
     name:'art-main-wrapper',
-    components:{
-        artCatalog,
-        artTrash
-    },
-    props:{
-
-    },
+    
+    props:{},
     data() {
         return{
 
@@ -29,10 +18,6 @@ export default{
         }
     },
     computed:{
-        ...mapGetters([
-            'TRASH',
-
-        ])
 
     },
     methods:{

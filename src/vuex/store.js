@@ -17,7 +17,27 @@ let store = new Vuex.Store ({
             state.products = products;
         },
         SET_TRASH:(state, product) => {
-            state.trash.push(product)
+            if(state){
+                let beProduct = false;
+                state.trash.map(function (item) {
+                    if(item.article === product.article) {
+                        beProduct =  true;
+                        item.qty++
+
+                    }
+                })
+                if(!beProduct){
+                    state.trash.push(product)
+                }
+
+            }
+            else{
+                state.trash.push(product)
+            }
+            
+        },
+        DELETE_ITEM:(state, index) => {
+            state.trash.splice(index, 1)
         }
     },
     actions:{
@@ -38,6 +58,10 @@ let store = new Vuex.Store ({
         },
         ADD_TO_TRASH({commit}, product){
             commit('SET_TRASH', product);
+        },
+        DELETE_ITEM_TRASH({commit}, index){
+            commit('DELETE_ITEM', index)
+
         }
     },
     getters:{
