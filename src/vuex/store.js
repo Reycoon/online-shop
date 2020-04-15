@@ -9,7 +9,6 @@ Vue.use(Vuex);
 
 let store = new Vuex.Store({
     state: {
-        searchValue: '',
         products: [],
         trash: []
     },
@@ -43,9 +42,6 @@ let store = new Vuex.Store({
                 state.trash[index].qty--
             }
 
-        },
-        BUY_ITEM: (state) => {
-            state.trash.splice(0, state.trash.length)
         }
     },
     actions: {
@@ -71,18 +67,13 @@ let store = new Vuex.Store({
             commit('DELETE_ITEM', index)
 
         },
-        BUY_ITEM_TRASH({ commit }) {
-            commit('BUY_ITEM')
-
-        },
         PLUS_ITEM({ commit }, index) {
             commit('PLUS', index)
 
         },
         MINUS_ITEM({ commit }, index) {
             commit('MINUS', index)
-        },
-
+        }
     },
     getters: {
         PRODUCTS(state) {
@@ -91,7 +82,7 @@ let store = new Vuex.Store({
 
         TRASH(state) {
             return state.trash;
-        },
+        }
 
     }
 

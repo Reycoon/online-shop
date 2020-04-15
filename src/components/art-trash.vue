@@ -1,6 +1,10 @@
 <template>
   <div class="art-trash">
-    <router-link :to="{name: 'Catalog'}"></router-link>
+    <router-link :to="{name: 'Catalog'}">
+      <div class="art-catalog-to-trash">
+        <p>Каталог</p>
+      </div>
+    </router-link>
     <h2>Корзина</h2>
     <h4 v-if="!trash_data.length">Корзина пустая</h4>
     <art-trash-item
@@ -13,7 +17,6 @@
     />
     <div class="art-trash-total-price">
       <p>Общая стоимость: {{trashTotalPrice}} руб.</p>
-      <button class="art-buy" v-if="trash_data.length" @click="buy">Купить</button>
     </div>
   </div>
 </template>
@@ -57,12 +60,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      "DELETE_ITEM_TRASH",
-      "PLUS_ITEM",
-      "MINUS_ITEM",
-      "BUY_ITEM_TRASH"
-    ]),
+    ...mapActions(["DELETE_ITEM_TRASH", "PLUS_ITEM", "MINUS_ITEM"]),
     plus(index) {
       this.PLUS_ITEM(index);
     },
@@ -71,10 +69,6 @@ export default {
     },
     deleteItemTrash(index) {
       this.DELETE_ITEM_TRASH(index);
-    },
-    buy() {
-      alert("Спасибо за покупку!");
-      this.BUY_ITEM_TRASH();
     }
   }
 };
@@ -90,18 +84,8 @@ export default {
   bottom: 0px;
   right: 0;
   left: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   color: #ffffff;
   background: lightslategrey;
   padding: 8px 24px;
-}
-button.art-buy {
-  font-size: 20px;
-  border-radius: 20px;
-  padding: 8px 16px;
-  background: transparent;
-  color: #ffffff;
 }
 </style>

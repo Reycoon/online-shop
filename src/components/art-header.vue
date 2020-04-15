@@ -1,29 +1,17 @@
 <template>
   <div class="art-header">
-    <router-link :to="{name: 'Main'}">
-      <img src="../assets/logo2.png" alt="logo" />
-    </router-link>
-
-    <ul>
-      <art-nav />
-    </ul>
+    
   </div>
 </template>
 
 <script>
-import artNav from "./art-nav";
 
 export default {
   name: "art-header",
-  components: {
-    artNav
-  },
 
   props: {},
   data() {
-    return {
-      searchVaule: ""
-    };
+    return {};
   },
   computed: {},
   methods: {}
@@ -31,15 +19,15 @@ export default {
 </script>
 
 <style>
-.art-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.art-header{
+  position: static;
+  bottom: 100px;
+  right: 0;
+  left: 0;
+  color: #ffffff;
+  background: lightslategrey;
+  padding: 8px 24px;
 
-  padding: 16px;
 }
 
-.art-header img {
-  width: 200px;
-}
 </style>

@@ -12,7 +12,6 @@ let router = new Router({
             path: '/',
             name: 'Main',
             component: artMain
-
         },
         {
             path: '/catalog',
