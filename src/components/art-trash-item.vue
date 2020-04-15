@@ -9,14 +9,21 @@
      </div>
      <div class="art-trash-item-sum">
          
-         {{trash_item_data.qty}}
-         </div>
-     <button @click="deleteItemTrash">Удалить</button>
+        <span>
+            <button class="art-trash-item-qty" @click="plusItem"> + </button>
+            {{trash_item_data.qty}} шт. 
+            <button class="art-trash-item-qty" @click="minusItem"> − </button>
+            </span> 
+        
+    </div>
+     <button class="btn" @click="deleteItemTrash">Удалить</button>
 
  </div>
 </template>
 
 <script>
+
+
 
 export default{
     name:'art-trash-item',
@@ -41,17 +48,20 @@ export default{
 
     },
     methods:{
+        plusItem(){
+            this.$emit('plus')
+
+        },
+        minusItem(){
+            this.$emit('minus')
+
+        },
+
         deleteItemTrash(){
             this.$emit('deleteItemTrash')
         }
         
-    },
-
-    mounted() {
-        this.$set(this.trash_item_data, 'qty', 1)
-
     }
-
 
 }
 
@@ -64,13 +74,31 @@ export default{
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    border: black solid;
     padding: 16px;
     margin-bottom: 16px;
-    border-width: 1px;
+    background: white;
+    border-radius: 30px;
 }
 .art-trash-item-image{
     width: 100px;
+}
+.art-trash-item-qty{
+    cursor: pointer;
+}
+.btn{
+    padding: 8px 16px;
+    background: lightslategrey;
+    color: white;
+    border: 0;
+    border-radius: 8px;
+}
+.art-trash-item-qty{
+    padding: 1px 5px;
+    background: lightslategrey;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    text-size-adjust: 100px;
 }
 
 

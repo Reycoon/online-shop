@@ -4,36 +4,43 @@
     "available" : true,
     "image" : "1.jpg",
     "name" : "Hoodie",
-    "price" : 1000
+    "price" : 1000,
+    "option" : "Мужские"
   }, {
     "article" : "T2",
     "available" : true,
     "image" : "2.jpg",
     "name" : "T-shirt",
-    "price" : 500
+    "price" : 500,
+    "option" : "Женские"
   }, {
     "article" : "N3",
     "available" : true,
     "image" : "3.jpg",
     "name" : "Notepad",
-    "price" : 200
+    "price" : 200,
+    "option" : "Канцелярия"
+    
   }, {
     "article" : "S4",
     "available" : true,
     "image" : "4.jpg",
     "name" : "Socks",
-    "price" : 100
+    "price" : 100,
+    "option" : "Аксессуары"
   }, {
     "article" : "C5",
     "available" : true,
     "image" : "5.jpg",
     "name" : "Cap",
-    "price" : 400
+    "price" : 400,
+    "option" : "Аксессуары"
   }, {
     "article" : "P6",
     "available" : true,
     "image" : "6.jpg",
     "name" : "Pen",
-    "price" : 50
+    "price" : 50,
+    "option" : "Канцелярия"
   } ]
 }

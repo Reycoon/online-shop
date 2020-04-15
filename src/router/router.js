@@ -7,15 +7,15 @@ import artTrash from '../components/art-trash'
 Vue.use(Router);
 let router = new Router({
     mode: 'history',
-    routes:[
+    routes: [
         {
-            path:'/',
-            name:'Catalog',
+            path: '/',
+            name: 'Catalog',
             component: artCatalog
         },
         {
-            path:'/trash',
-            name:'Trash',
+            path: '/trash',
+            name: 'Trash',
             component: artTrash,
             props: true
 
