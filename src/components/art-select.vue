@@ -1,6 +1,6 @@
 <template>
   <div class="art-select">
-    <p class="art-select-title" @click="optionsVisible = !optionsVisible">Каталог</p>
+    <p class="art-select-title" @click="optionsVisible = !optionsVisible">{{selected}}</p>
     <div class="art-options" v-if="optionsVisible">
       <p
         v-for="option in options"

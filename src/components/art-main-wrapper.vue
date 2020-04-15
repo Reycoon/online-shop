@@ -1,17 +1,17 @@
 <template>
   <div class="art-main-wrapper">
-    
+    <art-header></art-header>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import artHeader from "./art-header";
 
 export default {
   name: "art-main-wrapper",
-  components:{
-    
-
+  components: {
+    artHeader
   },
 
   props: {},
@@ -26,6 +26,6 @@ export default {
 <style>
 .art-main-wrapper {
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1400px;
 }
 </style>
