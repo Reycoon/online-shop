@@ -1,16 +1,35 @@
 <template>
   <div class="art-catalog">
+    <div class="filter">
+      <art-select :options="options" @select="optionSelect" :selected="selected" />
+
+      <div class="range-slider">
+        <input
+          type="range"
+          min="0"
+          max="1000"
+          step="50"
+          v-model.number="minPrice"
+          @change="setRangeSlider"
+        />
+        <input
+          type="range"
+          min="0"
+          max="1000"
+          step="50"
+          v-model.number="maxPrice"
+          @change="setRangeSlider"
+        />
+        <span class="slider-price">{{minPrice}} руб.</span>
+        <span class="slider-price">{{maxPrice}} руб.</span>
+      </div>
+    </div>
     <router-link :to="{name: 'Trash', params:{trash_data: TRASH}}">
       <div class="art-catalog-to-trash">
         <img class="art-catalog-trash-img" src="../assets/trash.png" alt />
         <span class="art-catalog-trash-num" v-if="TRASH.length">{{TRASH.length}}</span>
       </div>
     </router-link>
-    <p v-if="this.sortProd.length">
-      <span class="art-trash-item-qty" @click="delProduct">×</span>
-      {{selected}}
-    </p>
-    <art-select :options="options" @select="optionSelect" :selected="selected" />
 
     <div class="art-catalog_list">
       <art-catalog-item
@@ -38,13 +57,16 @@ export default {
   data() {
     return {
       options: [
+        { name: "Все", value: "all" },
         { name: "Мужские", value: "m" },
         { name: "Женские", value: "f" },
         { name: "Канцелярия", value: "o" },
         { name: "Аксессуары", value: "a" }
       ],
       selected: "Каталог",
-      sortProd: []
+      sortProd: [],
+      minPrice: 0,
+      maxPrice: 1000
     };
   },
 
@@ -64,18 +86,27 @@ export default {
     addToTrash(data) {
       this.ADD_TO_TRASH(data);
     },
-    optionSelect(option) {
-      this.sortProd = [];
-      let vm = this;
-      this.PRODUCTS.map(function(item) {
-        if (item.option === option.name) {
-          vm.sortProd.push(item);
-        }
-      });
-      this.selected = option.name;
+    setRangeSlider() {
+      if (this.minPrice > this.maxPrice) {
+        let temp = this.maxPrice;
+        this.maxPrice = this.minPrice;
+        this.minPrice = temp;
+      }
+      this.optionSelect();
     },
-    delProduct() {
-      return (this.sortProd = []);
+    optionSelect(option) {
+      let vm = this;
+      this.sortProd = [...this.PRODUCTS];
+      this.sortProd = this.sortProd.filter(function(item) {
+        return item.price >= vm.minPrice && item.price <= vm.maxPrice;
+      });
+
+      if (option) {
+        this.selected = option.name;
+        this.sortProd = this.sortProd.filter(function(e) {
+          return e.option === option.name;
+        });
+      }
     }
   },
   mounted() {
@@ -85,6 +116,15 @@ export default {
 </script>
 
 <style>
+.art-catalog {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+.filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .art-catalog_list {
   display: flex;
   flex-wrap: wrap;
@@ -92,19 +132,132 @@ export default {
   align-items: center;
 }
 .art-catalog-to-trash {
-  position: relative;
-  padding: 16px;
+  position: fixed;
+  left: 0;
+  bottom: 300px;
+  padding: 3px;
+  background: wheat;
+  border-radius: 0px 10px 10px 0px;
+  text-align: center;
 }
 .art-catalog-trash-img {
-  position: absolute;
   width: 40px;
 }
 .art-catalog-trash-num {
-  position: absolute;
   color: white;
   background: red;
-  width: 20px;
-  border-radius: 10px;
+  padding: 2px 5px;
+  font-size: 14px;
+  border-radius: 100%;
+  position: absolute;
+  bottom: 2px;
+  right: 0;
+}
 
+.slider-price {
+  position: relative;
+  top: 20px;
+  margin: 40px;
+  font-size: 14px;
+}
+.range-slider {
+  width: 300px;
+}
+
+.range-slider svg,
+.range-slider input[type="range"] {
+  position: absolute;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  z-index: 2;
+  position: relative;
+  top: 2px;
+  margin-top: -7px;
+}
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 300px;
+  margin: 5.3px 0;
+}
+input[type="range"]:focus {
+  outline: none;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 0px 0px 2.5px rgba(1, 0, 0, 0.8), 0px 0px 0px rgba(27, 0, 0, 0.8);
+  background: #ffffff;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+input[type="range"]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 1.3px #000000, 0px 0px 0px #0d0d0d;
+  border: 1.3px solid #000000;
+  height: 19px;
+  width: 14px;
+  border-radius: 50px;
+  background: #778899;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5.5px;
+}
+input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: #ffffff;
+}
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 0px 0px 2.5px rgba(1, 0, 0, 0.8), 0px 0px 0px rgba(27, 0, 0, 0.8);
+  background: #ffffff;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+input[type="range"]::-moz-range-thumb {
+  box-shadow: 0px 0px 1.3px #000000, 0px 0px 0px #0d0d0d;
+  border: 1.3px solid #000000;
+  height: 19px;
+  width: 14px;
+  border-radius: 50px;
+  background: #778899;
+  cursor: pointer;
+}
+input[type="range"]::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type="range"]::-ms-fill-lower {
+  background: #f2f2f2;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 0px 0px 2.5px rgba(1, 0, 0, 0.8), 0px 0px 0px rgba(27, 0, 0, 0.8);
+}
+input[type="range"]::-ms-fill-upper {
+  background: #ffffff;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 0px 0px 2.5px rgba(1, 0, 0, 0.8), 0px 0px 0px rgba(27, 0, 0, 0.8);
+}
+input[type="range"]::-ms-thumb {
+  box-shadow: 0px 0px 1.3px #000000, 0px 0px 0px #0d0d0d;
+  border: 1.3px solid #000000;
+  height: 19px;
+  width: 14px;
+  border-radius: 50px;
+  background: #778899;
+  cursor: pointer;
+  height: 8.4px;
+}
+input[type="range"]:focus::-ms-fill-lower {
+  background: #ffffff;
+}
+input[type="range"]:focus::-ms-fill-upper {
+  background: #ffffff;
 }
 </style>
