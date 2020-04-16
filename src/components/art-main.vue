@@ -1,14 +1,17 @@
 <template>
   <div class="art-main">
-    <h1>TRUMP IT</h1>
-    <div>©TRUMP IT</div>
+    <art-slider/>
+
   </div>
 </template>
 
 <script>
+import artSlider from "./art-slider";
 export default {
   name: "art-main",
-  components: {},
+  components: {
+    artSlider
+  },
 
   props: {},
   data() {
@@ -20,4 +23,7 @@ export default {
 </script>
 
 <style>
+.art-slider{
+  margin: 20px;
+}
 </style>

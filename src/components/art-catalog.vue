@@ -37,6 +37,7 @@
         :key="product.article"
         v-bind:product_data="product"
         @addToTrash="addToTrash"
+        @productClick="productClick"
       />
     </div>
   </div>
@@ -107,6 +108,10 @@ export default {
           return e.option === option.name;
         });
       }
+    },
+    productClick(article){
+      this.$router.push({name: 'Item', query: {'Item': article}})
+
     }
   },
   mounted() {

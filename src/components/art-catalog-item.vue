@@ -1,5 +1,5 @@
 <template>
-  <div class="art-catalog-item">
+  <div class="art-catalog-item" @click="productClick">
     <img
       class="art-catalog-item-image"
       v-bind:src=" require('../assets/' + product_data.image) "
@@ -32,6 +32,9 @@ export default {
   methods: {
     addToTrash() {
       this.$emit("addToTrash", this.product_data);
+    },
+    productClick(){
+      this.$emit('productClick', this.product_data.article)
     }
   },
   mounted() {}
