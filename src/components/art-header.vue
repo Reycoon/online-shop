@@ -3,7 +3,6 @@
     <router-link :to="{name: 'Main'}">
       <img src="../assets/logo2.png" alt="logo" />
     </router-link>
-<p></p>
     <ul>
       <art-nav />
     </ul>
