@@ -1,7 +1,8 @@
 <template>
-  <div class="art-catalog-item" @click="productClick">
+  <div class="art-catalog-item" >
     <img
       class="art-catalog-item-image"
+      @click="productClick"
       v-bind:src=" require('../assets/' + product_data.image) "
       alt="img"
     />

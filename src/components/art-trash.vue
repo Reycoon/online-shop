@@ -13,14 +13,14 @@
     />
     <div class="art-trash-total-price">
       <p>Общая стоимость: {{trashTotalPrice}} руб.</p>
-      <button class="art-buy" v-if="trash_data.length" @click="buy">Купить</button>
+      <button class="art-buy" v-if="trash_data.length && user.loggedIn" @click="buy">Купить</button>
     </div>
   </div>
 </template>
 
 <script>
 import artTrashItem from "./art-trash-item";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "art-trash",
@@ -39,6 +39,9 @@ export default {
     return {};
   },
   computed: {
+    ...mapGetters({
+      user: "user"
+    }),
     trashTotalPrice() {
       let result = [];
 

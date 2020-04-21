@@ -1,17 +1,24 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
+import createPersistedState from "vuex-persistedstate";
 
+
+import firebase from '../firebase'
 
 
 
 Vue.use(Vuex);
+Vue.use(firebase);
 
 let store = new Vuex.Store({
     state: {
         searchValue: '',
         products: [],
-        trash: []
+        trash: [],
+        user: {
+            loggedIn: false,
+            data: null
+        }
     },
     mutations: {
         SET_PRODUCTS: (state, products) => {
@@ -46,22 +53,22 @@ let store = new Vuex.Store({
         },
         BUY_ITEM: (state) => {
             state.trash.splice(0, state.trash.length)
+        },
+        SET_LOGGED_IN(state, value) {
+            state.user.loggedIn = value;
+        },
+        SET_USER(state, data) {
+            state.user.data = data;
         }
     },
     actions: {
         GET_PRODUCTS({ commit }) {
-            return axios('http://localhost:3000/products', {
-                method: "GET"
-            })
-                .then((products) => {
-                    commit('SET_PRODUCTS', products.data);
-                    return products;
-                })
-                .catch((error) => {
-                    console.log(error);
-                    return error;
 
-                })
+            return firebase.database.ref('products').on('value', products => {
+                commit('SET_PRODUCTS', products.val());
+                return products;
+            })
+
 
         },
         ADD_TO_TRASH({ commit }, product) {
@@ -82,9 +89,23 @@ let store = new Vuex.Store({
         MINUS_ITEM({ commit }, index) {
             commit('MINUS', index)
         },
+        fetchUser({ commit }, user) {
+            commit("SET_LOGGED_IN", user !== null);
 
+            if (user) {
+                commit("SET_USER", {
+                    displayName: user.displayName,
+                    email: user.email
+                });
+            } else {
+                commit("SET_USER", null);
+            }
+        }
     },
+
+
     getters: {
+
         PRODUCTS(state) {
             return state.products;
         },
@@ -92,8 +113,12 @@ let store = new Vuex.Store({
         TRASH(state) {
             return state.trash;
         },
+        user(state) {
+            return state.user
+        }
 
-    }
+    },
+    plugins: [createPersistedState()],
 
 });
 
