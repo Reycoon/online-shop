@@ -1,16 +1,19 @@
 <template>
   <div id="app">
+    <art-header></art-header>
     <art-main-wrapper></art-main-wrapper>
   </div>
 </template>
 
 <script>
+import artHeader from "./components/art-header";
 import artMainWrapper from "./components/art-main-wrapper";
 
 export default {
   name: "App",
   components: {
-    artMainWrapper
+    artMainWrapper,
+    artHeader
   }
 };
 </script>

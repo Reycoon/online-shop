@@ -1,11 +1,13 @@
 <template>
   <div class="art-header">
+    <div class="head">
     <router-link :to="{name: 'Main'}">
       <img src="../assets/logo2.png" alt="logo" />
     </router-link>
     <ul>
       <art-nav />
     </ul>
+    </div>
   </div>
 </template>
 
@@ -32,17 +34,24 @@ export default {
 <style>
 .art-header {
   
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+ 
   background: black;
+  
   margin-bottom: 50px;
 
 
 }
+.head {
+   display: flex;
+   flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 50px;
+
+}
 
 
-.art-header img {
+.head img {
   width: 200px;
   padding:0 10px;
 

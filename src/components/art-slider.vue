@@ -47,7 +47,7 @@ export default {
 
 <style>
 #slider { /*положение слайдера*/
-    position: relative;
+    width: 100%;
 	text-align: center;
     top: 10px;
 }
@@ -86,8 +86,8 @@ article img{ /*размер изображений слайдера*/
 #switch3:checked ~ #controls label:nth-child(2){
 	background: url('../assets/prev.png') no-repeat; /*заливка фона картинкой без повторений*/
 	float: left;
-	margin: 0 0 0 -84px; /*сдвиг влево*/
-	display: block;
+	margin: 0 0 0 -30px; /*сдвиг влево*/
+	/* display: block; */
 	height: 68px;
 	width: 68px;
 }
@@ -97,9 +97,10 @@ article img{ /*размер изображений слайдера*/
 #switch2:checked ~ #controls label:nth-child(3),
 #switch3:checked ~ #controls label:nth-child(4){
 	background: url('../assets/next.png') no-repeat; /*заливка фона картинкой без повторений*/
+	color: black;
 	float: right;
-	margin: 0 -84px 0 0; /*сдвиг вправо*/
-	display: block;
+	margin: 0 -30px 0 0; /*сдвиг вправо*/
+	/* display: block; */
 	height: 68px;
 	width: 68px;
 }

@@ -89,7 +89,7 @@ let store = new Vuex.Store({
         MINUS_ITEM({ commit }, index) {
             commit('MINUS', index)
         },
-        fetchUser({ commit }, user) {
+     fetchUser({ commit }, user) {
             commit("SET_LOGGED_IN", user !== null);
 
             if (user) {

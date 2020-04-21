@@ -4,10 +4,10 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-
-
           <div class="card-body">
+           
             <div v-if="user" class="alert alert-success" role="alert">Здравствуйте, {{user.data.displayName}}</div>
+            
           </div>
         </div>
       </div>
@@ -18,9 +18,8 @@
 
 <script>
 import { mapGetters } from "vuex";
-// import firebase from 'firebase'
-// console.log(firebase.auth) // Undefined
-// console.log(firebase.default.auth)
+
+
 
 
 export default {

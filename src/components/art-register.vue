@@ -94,11 +94,13 @@ export default {
         .auth()
         .createUserWithEmailAndPassword(this.form.email, this.form.password)
         .then(data => {
-          data.user
-            .updateProfile({
+          data.user.updateProfile({
               displayName: this.form.name
+              
             })
-            .then(() => {});
+            .then(() => {
+
+            });
         })
         .catch(err => {
           this.error = err.message;
@@ -115,7 +117,7 @@ export default {
   padding: 30px;
   border-radius: 50px;
 
-  margin: auto 500px;
+  margin: auto 0px;
 }
 .btn-primary{
   margin-top: 10px;

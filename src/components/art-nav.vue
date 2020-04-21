@@ -5,7 +5,7 @@
     </router-link>
     <div v-if="user.loggedIn">
       <li class="nav-item">
-        <a class="nav-link" @click.prevent="signOut">Sign out</a>
+        <a class="nav-link" @click.prevent="signOut">Выйти</a>
       </li>
       <li class="nav-item">Здравствуйте, {{user.data.displayName}}</li>
     </div>
@@ -70,4 +70,8 @@ export default {
 text-decoration: none;
 color: white;
 }
+.nav-item{
+  color: white;
+}
+
 </style>

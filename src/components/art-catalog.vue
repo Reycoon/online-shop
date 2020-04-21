@@ -121,13 +121,11 @@ export default {
 </script>
 
 <style>
-.art-catalog {
-  margin: 0 auto;
-  max-width: 1200px;
-}
+
 .filter {
   display: flex;
-  justify-content: space-between;
+  /* flex-wrap: wrap; */
+  justify-content: space-around;
   align-items: center;
 }
 .art-catalog_list {
@@ -164,6 +162,8 @@ export default {
   top: 20px;
   margin: 40px;
   font-size: 14px;
+  margin-top: 8px;
+  
 }
 .range-slider {
   width: 300px;
@@ -172,6 +172,7 @@ export default {
 .range-slider svg,
 .range-slider input[type="range"] {
   position: absolute;
+  max-width: 20%;
 }
 
 input[type="range"]::-webkit-slider-thumb {
