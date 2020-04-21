@@ -64,5 +64,10 @@ export default {
   display: inline;
   padding: 8px;
   margin: 16px;
+  text-decoration: none;
+}
+.art-nav a {
+text-decoration: none;
+color: white;
 }
 </style>

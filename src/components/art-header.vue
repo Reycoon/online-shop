@@ -31,14 +31,20 @@ export default {
 
 <style>
 .art-header {
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: black;
+  margin-bottom: 50px;
 
-  padding: 16px;
+
 }
+
 
 .art-header img {
   width: 200px;
+  padding:0 10px;
+
 }
 </style>

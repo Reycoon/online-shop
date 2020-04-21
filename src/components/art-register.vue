@@ -8,7 +8,7 @@
               <div v-if="error" class="alert alert-danger">{{error}}</div>
               <form action="#" @submit.prevent="submit">
                 <div class="form-group row">
-                  <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+                  <label for="name" class="col-md-4 col-form-label text-md-right">Имя</label>
 
                   <div class="col-md-6">
                     <input
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="form-group row">
-                  <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                  <label for="password" class="col-md-4 col-form-label text-md-right">Пароль</label>
 
                   <div class="col-md-6">
                     <input
@@ -116,5 +116,8 @@ export default {
   border-radius: 50px;
 
   margin: auto 500px;
+}
+.btn-primary{
+  margin-top: 10px;
 }
 </style>

@@ -26,6 +26,6 @@ export default {
 <style>
 .art-main-wrapper {
   margin: 0 auto;
-  max-width: 1400px;
+
 }
 </style>
